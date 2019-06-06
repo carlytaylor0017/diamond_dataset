@@ -66,7 +66,7 @@
 
 ## Model Building <a name="model"></a>
 
-### CLinear Regression without Transformations  <a name="notransform"></a>
+### Linear Regression without Transformations  <a name="notransform"></a>
 
 ### Linear Regression with Logorithmic Transformation <a name="transform"></a>
 
