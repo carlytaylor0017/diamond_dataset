@@ -1,5 +1,5 @@
 # diamond_dataset
-# Building a scalable database of chemical names and structures from simplified molecular-input line-entry system (SMILES) strings 
+# Building a linear regression model to predict prices of diamonds
 ## Carly Wolfbrandt
 
 ### Table of Contents
