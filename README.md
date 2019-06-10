@@ -1,5 +1,5 @@
 # diamond_dataset
-# Building a linear regression model to predict prices of diamonds
+# Building a linear regression and random forest model to predict prices of diamonds
 ## Carly Wolfbrandt
 
 ### Table of Contents
@@ -15,6 +15,32 @@
 
 ### Diamond Dataset <a name="dataset"></a>
 
+The diamond dataset contains prices and other attributes of almost 40,000 diamonds. The raw data has 9 features - 3 ordinal (cut, color and clarity) and 6 numerical (price, depth, table, x, y and z).
+
+The features are described as follows: 
+
+***ORDINAL***
+
+**Cut**: quality of the cut (Fair, Good, Very Good, Premium, Ideal)
+
+**Color**: diamond color, from J (worst) to D (best)
+
+**Clarity**: a measurement of how clear the diamond is (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))
+
+***NUMERICAL***
+
+**Price**: in US dollars
+
+**Depth**: total depth percentage = z / mean(x, y) = 2 * z / (x + y)
+
+**Table**: width of top of diamond relative to widest point
+
+**X**: length in mm 
+
+**Y**: width in mm
+
+**Z**: depth in mm 
+
 **Table 1**: Initial diamond dataset 
 
 |    |   price | cut     | color   | clarity   |   depth |   table |    x |    y |    z |
@@ -26,6 +52,9 @@
 |  4 |     335 | Good    | J       | SI2       |    63.3 |      58 | 4.34 | 4.35 | 2.75 |
 
 ### Data Cleaning <a name="cleaning"></a>
+
+
+
 
 **Table 2**: Descriptive statistics of dataset summarizing the central tendency, dispersion and shape of distribution
 
