@@ -6,6 +6,7 @@
 1. [Exploratory Data Analysis](#eda)
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
+    3. [Feature Engineering](#engineering)
 4. [Model Building](#model)
     1. [Linear Regression without Transformations](#notransform)
     2. [Linear Regression with Logorithmic Transformation](#transform)
@@ -15,11 +16,11 @@
 
 ### Diamond Dataset <a name="dataset"></a>
 
-The diamond dataset contains prices and other attributes of almost 40,000 diamonds. The raw data has 9 features - 3 ordinal (cut, color and clarity) and 6 numerical (price, depth, table, x, y and z).
+The diamond dataset contains prices and other attributes of almost 40,000 diamonds. The raw data has 9 features - 3 ordinal categorical (cut, color and clarity) and 6 numerical (price, depth, table, x, y and z).
 
 The features are described as follows: 
 
-***ORDINAL***
+***ORDINAL CATEGORICAL***
 
 **Cut**: quality of the cut (Fair, Good, Very Good, Premium, Ideal)
 
@@ -53,8 +54,7 @@ The features are described as follows:
 
 ### Data Cleaning <a name="cleaning"></a>
 
-
-
+The dataset needed to be cleaned prior to model building. Looking at the descriptive statistics, it is apparent that there are rows where at least one dimension of the diamond is 0, which is impossible if we are to believe the diamond is a 3 dimensional object. The minimum values for the x, y and z dimensions are 0, as shown in Table 2.
 
 **Table 2**: Descriptive statistics of dataset summarizing the central tendency, dispersion and shape of distribution
 
@@ -69,22 +69,28 @@ The features are described as follows:
 | 75%   |  5313.25 |    62.5    |    59       |     6.54    |     6.54    |     4.0325   |
 | max   | 18823    |    79      |    95       |    10.14    |    31.8     |    31.8      |
 
+Since there were 40,000 data points, there was enough data that these bad rows could be dropped. The rows where any value was +/- 3 standard deviations from the mean were dropped from the dataset. This method is preffered, as it is productionizable - i.e., the cleaning function can be applied to any new dataframe and offers reproducible results. This left 38,371 rows, as shown in Table 3. 
+
 **Table 3**: Descriptive statistics summarizing the central tendency, dispersion and shape of distribution for cleaned dataset
 
-|       |    price |       depth |       table |           x |          y |            z |
-|:------|---------:|------------:|------------:|------------:|-----------:|-------------:|
-| count | 39997    | 39997       | 39997       | 39997       | 39997      | 39997        |
-| mean  |  3926.87 |    61.7538  |    57.46    |     5.73015 |     5.7319 |     3.53868  |
-| std   |  3982.07 |     1.42997 |     2.22673 |     1.11852 |     1.1103 |     0.691385 |
-| min   |   326    |    43       |    43       |     3.73    |     3.71   |     1.07     |
-| 25%   |   949    |    61       |    56       |     4.71    |     4.72   |     2.91     |
-| 50%   |  2401    |    61.8     |    57       |     5.7     |     5.71   |     3.53     |
-| 75%   |  5313    |    62.5     |    59       |     6.54    |     6.54   |     4.03     |
-| max   | 18823    |    79       |    76       |    10.14    |    10.1    |     6.43     |
+|       |    price |       depth |       table |           x |           y |            z |
+|:------|---------:|------------:|------------:|------------:|------------:|-------------:|
+| count | 38371    | 38371       | 38371       | 38371       | 38371       | 38371        |
+| mean  |  3615.54 |    61.757   |    57.3739  |     5.6665  |     5.66966 |     3.50025  |
+| std   |  3473.15 |     1.26721 |     2.09609 |     1.06854 |     1.06103 |     0.660391 |
+| min   |   326    |    57.5     |    51       |     3.73    |     3.71    |     1.53     |
+| 25%   |   928    |    61.1     |    56       |     4.69    |     4.7     |     2.89     |
+| 50%   |  2316    |    61.8     |    57       |     5.66    |     5.67    |     3.5      |
+| 75%   |  5080    |    62.5     |    59       |     6.49    |     6.49    |     4.02     |
+| max   | 15873    |    66       |    64       |     9.08    |     9.01    |     5.65     |
+
+### Feature Engineering <a name="engineering"></a>
+
+Now that the dataset has been cleaned of outliers, some features will need to be engineered to prepare for model building. The ordinal categorical attributes were defined as having order amongst the values. Based on this order, a mapping scheme was  generated where each cut, color and clarity value was mapped to a number in accordance to its hierarchy. In this scheme, a higher number indicates a "better" value.
 
 **Table 4**: Replacing categorical values with ordinal values
 
-|    |   price |   cut |   color |   clarity |   depth |   table |    x |    y |    z |
+|    |   price |   cut |   color |   clarity | Now that the numerical features are   depth |   table |    x |    y |    z |
 |---:|--------:|------:|--------:|----------:|--------:|--------:|-----:|-----:|-----:|
 |  0 |     326 |     5 |       6 |         2 |    61.5 |      55 | 3.95 | 3.98 | 2.43 |
 |  1 |     326 |     4 |       6 |         3 |    59.8 |      61 | 3.89 | 3.84 | 2.31 |
@@ -92,6 +98,15 @@ The features are described as follows:
 |  3 |     334 |     4 |       2 |         4 |    62.4 |      58 | 4.2  | 4.23 | 2.63 |
 |  4 |     335 |     2 |       1 |         2 |    63.3 |      58 | 4.34 | 4.35 | 2.75 |
 
+**Table 4**: Replacing categorical values with ordinal values
+
+|    |   log_price |   color |   cut |   clarity |   log_volume |   table |
+|---:|------------:|--------:|------:|----------:|-------------:|--------:|
+|  0 |     5.7869  |       6 |     5 |         2 |      3.64289 |      55 |
+|  1 |     5.7869  |       6 |     4 |         3 |      3.54113 |      61 |
+|  3 |     5.81114 |       2 |     4 |         4 |      3.84427 |      58 |
+|  4 |     5.81413 |       1 |     2 |         2 |      3.94965 |      58 |
+|  5 |     5.81711 |       1 |     3 |         6 |      3.65568 |      57 |
 
 ## Model Building <a name="model"></a>
 
