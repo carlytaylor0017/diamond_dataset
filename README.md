@@ -6,7 +6,7 @@
 1. [Exploratory Data Analysis](#eda)
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
-    3. [Feature Engineering](#engineering)
+    3. [Feature Engineering]Strip plot of the logarithm of the price datapoints(#engineering)
 4. [Model Outputs](#model)
     1. [Linear Regression](#lm)
     2. [Random Forest](#rf)
@@ -120,11 +120,23 @@ Finally, the distribution of the prices in our dataset is heavily skewed towards
 
 **Figure 1**: Strip plot of the raw price datapoints
 
-Skewed data can be easily fixed by taking a logarithm of the feature. This allows for a more even distribution of the price data, and can be easily reversed when interpreting the model by exponentiating the responses after predicting.
+Distributions such as this often indicate that a variable needs to be transformed. If we were to fit a model to predict these responses, we would expect our residuals (the difference between what we observe and what we predict) to be similarly skewed. Figure 2 shows studentized residuals for a model fit to the price.
+
+![](images/studentized_residuals_nolog.png)
+
+**Figure 2**: Studentized residuals of the predicted price from a linear regression model
+
+Skewed data can be easily fixed by taking a logarithm of the feature. This allows for a more even distribution of the price data, and can be easily reversed when interpreting the model by exponentiating the responses after predicting. Figure 3 shows the distribution from Figure 1, transformed by taking a logarithm.
 
 ![](images/log_price.png)
 
-**Figure 2**: Strip plot of the logarithm of the price datapoints
+**Figure 3**: Strip plot of the logarithm of the price datapoints
+
+We should now expect our residuals to be much more evenly centered around 0 in our studentized residual plot.
+
+![](images/log_resid.png)
+
+**Figure 4**: Studentized residuals of the predicted price from a linear regression model
 
 The same procedure was applied to the volume to evenly distribute the datapoints. The final dataframe used for modeling can be seen in Table 6.
 
@@ -138,19 +150,16 @@ The same procedure was applied to the volume to evenly distribute the datapoints
 |  4 |     5.81413 |       1 |     2 |         2 |      3.94965 |      58 |
 |  5 |     5.81711 |       1 |     3 |         6 |      3.65568 |      57 |
 
+
+
+
 ## Model Building <a name="model"></a>
 
-![](images/studentized_residuals_nolog.png)
-![](images/log_resid.png)
+
+
  
 
 ### Linear Regression <a name="lm"></a>
-
-        explained variance score =  0.98
-        mean absolute error =  277.11
-        root mean squared error =  509.31
-        R squared =  0.98
-
 
 
         explained variance score =  0.95
@@ -159,8 +168,14 @@ The same procedure was applied to the volume to evenly distribute the datapoints
         R squared =  0.95
     
 
-
 ### Random Forest <a name="rf"></a>
+
+
+        explained variance score =  0.98
+        mean absolute error =  277.11
+        root mean squared error =  509.31
+        R squared =  0.98
+
 
 ## Future Work <a name="future_work"></a>
 
