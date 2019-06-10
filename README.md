@@ -174,6 +174,10 @@ The script takes arguments 'data' : a tab delimited csv file with input data, ei
     
 ![](images/linear_regression_predictions.png)
 
+**Figure 5**: Predicted price vs. true price for linear regression model
+
+**Table 7**: Coefficients for linear regression model
+
 |            |     value |
 |:-----------|----------:|
 | log_volume | 1.88635   |
@@ -191,6 +195,10 @@ The script takes arguments 'data' : a tab delimited csv file with input data, ei
         R squared =  0.98
 
 ![](images/random_forest_predictions.png)
+
+**Figure 6**: Predicted price vs. true price for random forest regression model
+
+**Table 8**: Feature importance for random forest regression model
 
 |            |   feature_importance |
 |:-----------|---------------------:|
