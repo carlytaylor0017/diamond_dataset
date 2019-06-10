@@ -90,7 +90,7 @@ Now that the dataset has been cleaned of outliers, some features will need to be
 
 **Table 4**: Replacing categorical values with ordinal values
 
-|    |   price |   cut |   color |   clarity | Now that the numerical features are   depth |   table |    x |    y |    z |
+|    |   price |   cut |   color |   clarity | depth |   table |    x |    y |    z |
 |---:|--------:|------:|--------:|----------:|--------:|--------:|-----:|-----:|-----:|
 |  0 |     326 |     5 |       6 |         2 |    61.5 |      55 | 3.95 | 3.98 | 2.43 |
 |  1 |     326 |     4 |       6 |         3 |    59.8 |      61 | 3.89 | 3.84 | 2.31 |
@@ -98,7 +98,11 @@ Now that the dataset has been cleaned of outliers, some features will need to be
 |  3 |     334 |     4 |       2 |         4 |    62.4 |      58 | 4.2  | 4.23 | 2.63 |
 |  4 |     335 |     2 |       1 |         2 |    63.3 |      58 | 4.34 | 4.35 | 2.75 |
 
-**Table 4**: Replacing categorical values with ordinal values
+Futhermore, there are also some colinear features. From the above description, depth is a function of x, y and z. In order to avoid multicollinearity, or when one predictor variable in a multiple regression model can be linearly predicted from the others with a high degree of accuracy, this feature can be dropped from the dataset.
+
+Another solution is to use decision trees or boosted trees algorithms, as they are immune to multicollinearity, since the tree will choose only one of the perfectly correlated features upon splitting.
+
+**Table 5**: Final dataframe for model building
 
 |    |   log_price |   color |   cut |   clarity |   log_volume |   table |
 |---:|------------:|--------:|------:|----------:|-------------:|--------:|
