@@ -114,9 +114,19 @@ Futhermore, the dimensions can be engineered into a volume by multiplying them t
 |  4 |     335 |     2 |       1 |         2 |      58 |  51.9172 |
 |  5 |     336 |     3 |       1 |         6 |      57 |  38.694  |
 
- ![](images/studentized_residuals_nolog.png)
- ![](images/log_resid.png)
+Finally, the distribution of the prices in our dataset is heavily skewed towards 0. Figure 1 shows a strip plot of the distribution of the prices, where the shading corresponds to the density of the data.
 
+![](images/no_log_price.png)
+
+**Figure 1**: Strip plot of the raw price datapoints
+
+Skewed data can be easily fixed by taking a logarithm of the feature. This allows for a more even distribution of the price data, and can be easily reversed when interpreting the model by exponentiating the responses after predicting.
+
+![](images/log_price.png)
+
+**Figure 2**: Strip plot of the logarithm of the price datapoints
+
+The same procedure was applied to the volume to evenly distribute the datapoints. The final dataframe used for modeling can be seen in Table 6.
 
 **Table 6**: Final dataframe for model building
 
@@ -129,6 +139,10 @@ Futhermore, the dimensions can be engineered into a volume by multiplying them t
 |  5 |     5.81711 |       1 |     3 |         6 |      3.65568 |      57 |
 
 ## Model Building <a name="model"></a>
+
+![](images/studentized_residuals_nolog.png)
+![](images/log_resid.png)
+ 
 
 ### Linear Regression <a name="lm"></a>
 
