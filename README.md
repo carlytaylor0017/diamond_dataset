@@ -3,14 +3,19 @@
 ## Carly Wolfbrandt
 
 ### Table of Contents
-1. [Exploratory Data Analysis](#eda)
+1. [Objective](#objective)
+2. [Exploratory Data Analysis](#eda)
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
     3. [Feature Engineering](#engineering)
-4. [Model Outputs](#model)
+3. [Model Outputs](#model)
     1. [Linear Regression](#lm)
     2. [Random Forest](#rf)
-5. [Future Work](#future_work)
+4. [Future Work](#future_work)
+
+## Objective <a name="objective"></a>
+
+Engineer at least one feature and build a model that will predict price for each record, given an input file with the same layout as diamonds.txt, minus price.
 
 ## Exploratory Data Analysis <a name="eda"></a>
 
@@ -151,11 +156,11 @@ The same procedure was applied to the volume to evenly distribute the datapoints
 |  5 |     5.81711 |       1 |     3 |         6 |      3.65568 |      57 |
 
 
-
-
 ## Model Building <a name="model"></a>
 
+The above preprocessing and feature engineering was integrated into an SKlearn pipeline; a pipeline sequentially applies a list of transforms and a final estimator, where intermediate steps of pipeline must implement fit and transform methods and the final estimator only needs to implement fit. The code for the diamond model can be found [here](https://github.com/cwolfbrandt/diamond_dataset/blob/master/src/diamond_model.py). 
 
+The script takes arguments 'data' : a tab delimited csv file with input data, either for model building or predictions, 'model_output_path' : where to save the serialized model object file, 'model_input_path' : serialized model object to use for predictions, 'output_file' : where to save the model predictions file, 'mode' : either train a new model or predict using an existing model, 'tree_model' : if True, use random forest model, 'no_tree_model' : if False, use linear regression model.
 
  
 
@@ -169,6 +174,14 @@ The same procedure was applied to the volume to evenly distribute the datapoints
     
 ![](images/linear_regression_predictions.png)
 
+|            |     value |
+|:-----------|----------:|
+| log_volume | 1.88635   |
+| clarity    | 0.119566  |
+| color      | 0.0766382 |
+| cut        | 0.0195203 |
+| table      | 0.0039767 |
+
 ### Random Forest <a name="rf"></a>
 
 
@@ -178,6 +191,14 @@ The same procedure was applied to the volume to evenly distribute the datapoints
         R squared =  0.98
 
 ![](images/random_forest_predictions.png)
+
+|            |   feature_importance |
+|:-----------|---------------------:|
+| log_volume |          0.951494    |
+| clarity    |          0.0322812   |
+| color      |          0.0147471   |
+| cut        |          0.00106129  |
+| table      |          0.000416271 |
 
 ## Future Work <a name="future_work"></a>
 
