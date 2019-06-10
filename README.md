@@ -1,5 +1,5 @@
 # diamond_dataset
-# Building a linear regression and random forest model to predict prices of diamonds
+# Application of random forest regression and comparison of performance to multiple linear regression in modeling the prices of diamonds
 ## Carly Wolfbrandt
 
 ### Table of Contents
