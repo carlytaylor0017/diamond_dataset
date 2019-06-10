@@ -161,7 +161,7 @@ The same procedure was applied to the volume to evenly distribute the datapoints
 
 ### Model Pipeline <a name="pipeline"></a>
 
-The above preprocessing and feature engineering was integrated into an SKlearn pipeline; a pipeline sequentially applies a list of transforms and a final estimator, where intermediate steps of pipeline must implement fit and transform methods and the final estimator only needs to implement fit. The code for the diamond model can be found [here](https://github.com/cwolfbrandt/diamond_dataset/blob/master/src/diamond_model.py). 
+The above preprocessing and feature engineering was integrated into a scikit-learn pipeline; a pipeline sequentially applies a list of transforms and a final estimator, where intermediate steps of pipeline must implement fit and transform methods and the final estimator only needs to implement fit. The code for the diamond model can be found [here](https://github.com/cwolfbrandt/diamond_dataset/blob/master/src/diamond_model.py). 
 
 The script takes arguments 'data' : a tab delimited csv file with input data, either for model building or predictions, 'model_output_path' : where to save the serialized model object file, 'model_input_path' : serialized model object to use for predictions, 'output_file' : where to save the model predictions file, 'mode' : either train a new model or predict using an existing model, 'tree_model' : if True, use random forest model, 'no_tree_model' : if False, use linear regression model.
 
