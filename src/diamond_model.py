@@ -112,12 +112,10 @@ def summary(y_true, y_predicted):
     ax = sns.regplot(y_true, y_predicted)
     ax.set(xlabel='True Price ($)', ylabel='Predicted Price($)')
     plt.show()
-    evs = explained_variance_score(y_true, y_predicted)
     nme = mean_absolute_error(y_true, y_predicted)
     nmse = np.sqrt(mean_squared_error(y_true, y_predicted))
     rs = r2_score(y_true, y_predicted)
     summary_output = f'''
-        explained variance score = {evs : .2f}
         mean absolute error = {nme : .2f}
         root mean squared error = {nmse : .2f}
         R squared = {rs : .2f}
