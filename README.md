@@ -10,7 +10,7 @@
     3. [Feature Engineering](#engineering)
 3. [Modelling](#model)
     1. [Model Pipeline](#pipeline)
-    2. [Scoring Metrics](#metrics)
+    2. [Model Scoring](#scoring)
     3. [Random Forest](#rf)
     4. [Linear Regression](#lm)
 
