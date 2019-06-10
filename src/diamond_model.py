@@ -32,6 +32,7 @@ def get_data(filename, sep="\t"):
     data: A dataframe containing features to be preprocessed and used for training.
     y: A dataframe containing labels, used for model response.
     """
+    #if using predict, y columns cannot be present in upload file or script will fail
     data = pd.read_csv(filename, sep=sep, header=0)
     # only keep rows that are +/- 3 standard deviations from the mean
     outlier_mask = (np.abs(stats.zscore(data.select_dtypes(include=np.number))) < 3).all(axis=1)
