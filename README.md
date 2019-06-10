@@ -9,9 +9,8 @@
     2. [Data Cleaning](#cleaning)
     3. [Feature Engineering](#engineering)
 3. [Model Outputs](#model)
-    1. [Linear Regression](#lm)
-    2. [Random Forest](#rf)
-4. [Future Work](#future_work)
+    1. [Random Forest](#rf)
+    2. [Linear Regression](#lm)
 
 ## Objective <a name="objective"></a>
 
@@ -162,7 +161,27 @@ The above preprocessing and feature engineering was integrated into an SKlearn p
 
 The script takes arguments 'data' : a tab delimited csv file with input data, either for model building or predictions, 'model_output_path' : where to save the serialized model object file, 'model_input_path' : serialized model object to use for predictions, 'output_file' : where to save the model predictions file, 'mode' : either train a new model or predict using an existing model, 'tree_model' : if True, use random forest model, 'no_tree_model' : if False, use linear regression model.
 
- 
+### Random Forest <a name="rf"></a>
+
+
+        explained variance score =  0.98
+        mean absolute error =  277.11
+        root mean squared error =  509.31
+        R squared =  0.98
+
+![](images/random_forest_predictions.png)
+
+**Figure 6**: Predicted price vs. true price for random forest regression model
+
+**Table 8**: Feature importance for random forest regression model
+
+|            |   feature_importance |
+|:-----------|---------------------:|
+| log_volume |          0.951494    |
+| clarity    |          0.0322812   |
+| color      |          0.0147471   |
+| cut        |          0.00106129  |
+| table      |          0.000416271 |
 
 ### Linear Regression <a name="lm"></a>
 
@@ -186,29 +205,9 @@ The script takes arguments 'data' : a tab delimited csv file with input data, ei
 | cut        | 0.0195203 |
 | table      | 0.0039767 |
 
-### Random Forest <a name="rf"></a>
 
 
-        explained variance score =  0.98
-        mean absolute error =  277.11
-        root mean squared error =  509.31
-        R squared =  0.98
 
-![](images/random_forest_predictions.png)
-
-**Figure 6**: Predicted price vs. true price for random forest regression model
-
-**Table 8**: Feature importance for random forest regression model
-
-|            |   feature_importance |
-|:-----------|---------------------:|
-| log_volume |          0.951494    |
-| clarity    |          0.0322812   |
-| color      |          0.0147471   |
-| cut        |          0.00106129  |
-| table      |          0.000416271 |
-
-## Future Work <a name="future_work"></a>
 
 
 
