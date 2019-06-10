@@ -6,7 +6,7 @@
 1. [Exploratory Data Analysis](#eda)
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
-    3. [Feature Engineering]Strip plot of the logarithm of the price datapoints(#engineering)
+    3. [Feature Engineering](#engineering)
 4. [Model Outputs](#model)
     1. [Linear Regression](#lm)
     2. [Random Forest](#rf)
@@ -167,6 +167,7 @@ The same procedure was applied to the volume to evenly distribute the datapoints
         root mean squared error =  779.50
         R squared =  0.95
     
+![](images/linear_regression_predictions.png)
 
 ### Random Forest <a name="rf"></a>
 
@@ -176,6 +177,7 @@ The same procedure was applied to the volume to evenly distribute the datapoints
         root mean squared error =  509.31
         R squared =  0.98
 
+![](images/random_forest_predictions.png)
 
 ## Future Work <a name="future_work"></a>
 
