@@ -225,7 +225,7 @@ While the errors are large, the overall fit of 0.95 is very good but not as good
 
 **Figure 6**: Predicted price vs. true price for linear regression model
 
-Table 8 shows the coefficients for each feature. These magnitude of these coefficients cannot be interpreted in the same way that the feature importances for the random forest model. Unless the data is standardized before training, the magnitude of the coefficients is meaningless.
+Table 8 shows the coefficients for each feature. The magnitude of these coefficients cannot be interpreted in the same way that the feature importances for the random forest model. Unless the data is standardized before training, the magnitude of the coefficients is meaningless.
 
 **Table 8**: Coefficients for linear regression model
 
