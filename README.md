@@ -181,18 +181,23 @@ R<sup>2</sup> is related to RMSE, in that it is calculated by dividing the MSE (
 
 ### Random Forest <a name="rf"></a>
  
- The scoring for the random forest model is given below. 
+Three scoring metrics for the random forest model are given below, along with the predicted responses vs. the true responses for the training and test data, as well as the importance of each feature in the model: 
  
         mean absolute error =  277.11
         root mean squared error =  509.31
         R squared =  0.98
 
-The mean 
+The mean price from this dataset was $3,615.93. The MAE is $277.11 while the RMSE is $509.31. Looking at Figure 5, it is obvious why the RMSE is higher than the MAE - as the predicted prices get higher, the errors get larger. Since RMSE penalizes for large errors, we expect it to be greater than the MAE for this model.
+
+While the errors are large, the overall fit of the model is very good. The highest score for R<sup>2</sup> is 1.0, so an R<sup>2</sup> of 0.98 is excellent. However, the magnitude of the MAE and RMSE mean that, although the fit is excellent, the model is subpar.
+
 ![](images/random_forest_predictions.png)
 
-**Figure 6**: Predicted price vs. true price for random forest regression model
+**Figure 5**: Predicted price vs. true price for random forest regression model
 
-**Table 8**: Feature importance for random forest regression model
+Table 7 shows the feature importance for each feature in the model. Since random forest consists of a number of decision trees, where every node is a single feature, designed to split the dataset so that similar response values are distributed evenly across sets. Thus when training a regression tree, each feature addition should have an effect on the variance. For a forest, the variance decrease from each feature can be averaged and the features are ranked according to how much they decrease the variance. 
+
+**Table 7**: Feature importance for random forest regression model
 
 |            |   feature_importance |
 |:-----------|---------------------:|
@@ -202,17 +207,27 @@ The mean
 | cut        |          0.00106129  |
 | table      |          0.000416271 |
 
+As shown in Table 7, the logarithm of the volume had the highest effect on the variance in training. It would seem that this is the most important feature, however, feature importance is not that simple. Correlations in data can lead to incorrect conclusions that one of the variables is a strong predictor while others are unimportant. There are ways to tease this out, but they are outside of the scope of this project.
+
 ### Linear Regression <a name="lm"></a>
+
+Three scoring metrics for the linear regression model are given below, along with the predicted responses vs. the true responses for the training and test data, as well as the importance of each feature in the model: 
 
         mean absolute error =  417.66
         root mean squared error =  779.50
         R squared =  0.95
-    
+ 
+The mean price from this dataset was $3,615.93. The MAE is $417.66 while the RMSE is $779.50. This model suffers from the same problems as the random forest model, since as the predicted prices get higher, the errors get larger. Recalling that RMSE penalizes for large errors, we expect it to be greater than the MAE for this model. Comparing Figure 5 to Figure 6, we also expect the RMSE and MAE to be higher for the linear regression model than for the random forest model.
+
+While the errors are large, the overall fit of 0.95 is very good but not as good as the random forest model at 0.98. However, the magnitude of the MAE and RMSE mean that, although the fit good, the model is even more subpar than the random forest model.
+ 
 ![](images/linear_regression_predictions.png)
 
-**Figure 5**: Predicted price vs. true price for linear regression model
+**Figure 6**: Predicted price vs. true price for linear regression model
 
-**Table 7**: Coefficients for linear regression model
+Table 8 shows the coefficients for each feature. These magnitude of these coefficients cannot be interpreted in the same way that the feature importances for the random forest model. Unless the data is standardized before training, the magnitude of the coefficients is meaningless.
+
+**Table 8**: Coefficients for linear regression model
 
 |            |     value |
 |:-----------|----------:|
@@ -223,13 +238,4 @@ The mean
 | table      | 0.0039767 |
 
 
-
-
-
-
-
-
-
-
-
-
+Comparing the above metrics to the random forest model, it is apparent that the fit of the random forest model is superior. However, the complexity of a random forest model mean they are more computationally expensive than a linear regression model. Therefore, it is not always a better choice.
