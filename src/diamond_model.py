@@ -160,8 +160,6 @@ def parse_arguments():
                         default='predictions.txt')
     parser.add_argument('--tree_model', action='store_true',
                         help='if True, use Random Forest Model')
-    parser.add_argument('--no_tree_model', action='store_false',
-                            help='if false, do not use Random Forest Model')
     parser.add_argument('--model_input_path', help='model to load', default='model.joblib')
     args = parser.parse_args()
     return args
