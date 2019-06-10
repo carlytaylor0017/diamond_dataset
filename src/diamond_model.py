@@ -125,7 +125,7 @@ def summary(y_true, y_predicted):
     print(summary_output)
 
 
-def predict(filename, model_path):
+def predict(filename, model_input_path):
     """Predict responses based on feature inputs
 
     Parameters
@@ -138,7 +138,7 @@ def predict(filename, model_path):
     """
     X = get_data(filename)
 
-    model = joblib.load(model_path, compress=9)
+    model = joblib.load(model_input_path)
     y_preds = model.predict(X)
     return np.exp(y_preds)
 
