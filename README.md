@@ -195,7 +195,7 @@ While the errors are large, the overall fit of the model is very good. The highe
 
 **Figure 5**: Predicted price vs. true price for random forest regression model
 
-Table 7 shows the feature importance for each feature in the model. Since random forest consists of a number of decision trees, where every node is a single feature, designed to split the dataset so that similar response values are distributed evenly across sets. Thus when training a regression tree, each feature addition should have an effect on the variance. For a forest, the variance decrease from each feature can be averaged and the features are ranked according to how much they decrease the variance. 
+Table 7 shows the feature importance for each feature in the model. Since random forest consists of a number of decision trees, where every node is a single feature designed to split the dataset so that similar response values are distributed evenly across sets. Thus when training a regression tree, each feature addition should have an effect on the variance. For a forest, the variance decrease from each feature can be averaged and the features are ranked according to how much they decrease the variance. 
 
 **Table 7**: Feature importance for random forest regression model
 
