@@ -8,9 +8,11 @@
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
     3. [Feature Engineering](#engineering)
-3. [Model Outputs](#model)
-    1. [Random Forest](#rf)
-    2. [Linear Regression](#lm)
+3. [Modelling](#model)
+    1. [Model Pipeline](#pipeline)
+    2. [Scoring Metrics](#metrics)
+    3. [Random Forest](#rf)
+    4. [Linear Regression](#lm)
 
 ## Objective <a name="objective"></a>
 
@@ -155,20 +157,37 @@ The same procedure was applied to the volume to evenly distribute the datapoints
 |  5 |     5.81711 |       1 |     3 |         6 |      3.65568 |      57 |
 
 
-## Model Building <a name="model"></a>
+## Modelling <a name="model"></a>
+
+### Model Pipeline <a name="pipeline"></a>
 
 The above preprocessing and feature engineering was integrated into an SKlearn pipeline; a pipeline sequentially applies a list of transforms and a final estimator, where intermediate steps of pipeline must implement fit and transform methods and the final estimator only needs to implement fit. The code for the diamond model can be found [here](https://github.com/cwolfbrandt/diamond_dataset/blob/master/src/diamond_model.py). 
 
 The script takes arguments 'data' : a tab delimited csv file with input data, either for model building or predictions, 'model_output_path' : where to save the serialized model object file, 'model_input_path' : serialized model object to use for predictions, 'output_file' : where to save the model predictions file, 'mode' : either train a new model or predict using an existing model, 'tree_model' : if True, use random forest model, 'no_tree_model' : if False, use linear regression model.
 
+The above script can both train and predict price responses, based on the arguments provided. If training, either random forest regression or linear regression can be used to generate a serialized model output. If predicting, an input of either a serialized random forest or linear regression model is needed to generate a text file of the price responses. 
+
+When training, a PNG file of the predicted responses vs. the true responses is generated, as well as statistical metrics for model scoring.
+
+### Model Scoring <a name="scoring"></a>
+
+Mean absolute error (MAE), root mean squared error (RMSE), and R-squared (R<sup>2</sup>) are three of the most common metrics used to measure accuracy for continuous variables. MAE and RMSE, are particularly useful and, depending on the model, the differences can be subtle or obvious.
+
+Both MAE and RMSE measure the average magnitude of the errors in a set of predictions. MAE is the average of the absolute differences between predictions and true responses (where all individual differences have equal weight), while RMSE is the square root of the average of the squared differences between predictions and true repsonses. Both metrics range from 0 to ∞ and don't account for the direction of errors. MAE and RMSE are both negatively-oriented, meaning smaller values are better.
+
+However, since errors are squared before they are averaged, the RMSE gives a relatively high weight to large errors. This means the RMSE penalizes large errors, and depending on the problem, is more informative. However, since RMSE does not describe average error alone, MAE is usually more useful.
+
+R<sup>2</sup> is related to RMSE, in that it is calculated by dividing the MSE (average of the squares of the residuals) by the variance in Y values. R<sup>2</sup> represents the proportion of the variance for a dependent variable that is explained by independent variable(s) in a regression model. R<sup>2</sup> is positively-oriented, meaning smaller values are worse.
+
 ### Random Forest <a name="rf"></a>
-
-
-        explained variance score =  0.98
+ 
+ The scoring for the random forest model is given below. 
+ 
         mean absolute error =  277.11
         root mean squared error =  509.31
         R squared =  0.98
 
+The mean 
 ![](images/random_forest_predictions.png)
 
 **Figure 6**: Predicted price vs. true price for random forest regression model
@@ -185,8 +204,6 @@ The script takes arguments 'data' : a tab delimited csv file with input data, ei
 
 ### Linear Regression <a name="lm"></a>
 
-
-        explained variance score =  0.95
         mean absolute error =  417.66
         root mean squared error =  779.50
         R squared =  0.95
