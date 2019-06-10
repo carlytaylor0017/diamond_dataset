@@ -15,7 +15,7 @@
 
 ## Objective <a name="objective"></a>
 
-Engineer at least one feature and build a model that will predict price for each record, given an input file with the same layout as diamonds.txt, minus price.
+Build a model that will predict price for each record, given an input file with the same layout as diamonds.txt, minus price.
 
 ## Exploratory Data Analysis <a name="eda"></a>
 
