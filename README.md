@@ -7,9 +7,9 @@
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
     3. [Feature Engineering](#engineering)
-4. [Model Building](#model)
-    1. [Linear Regression without Transformations](#notransform)
-    2. [Linear Regression with Logorithmic Transformation](#transform)
+4. [Model Outputs](#model)
+    1. [Linear Regression](#lm)
+    2. [Random Forest](#rf)
 5. [Future Work](#future_work)
 
 ## Exploratory Data Analysis <a name="eda"></a>
@@ -98,11 +98,27 @@ Now that the dataset has been cleaned of outliers, some features will need to be
 |  3 |     334 |     4 |       2 |         4 |    62.4 |      58 | 4.2  | 4.23 | 2.63 |
 |  4 |     335 |     2 |       1 |         2 |    63.3 |      58 | 4.34 | 4.35 | 2.75 |
 
-Futhermore, there are also some colinear features. From the above description, depth is a function of x, y and z. In order to avoid multicollinearity, or when one predictor variable in a multiple regression model can be linearly predicted from the others with a high degree of accuracy, this feature can be dropped from the dataset.
+From the descriptions of each feature, it is obvoius that depth is colinear with the dimensions, as depth is a function of x, y and z. In order to avoid multicollinearity, or when one predictor variable in a multiple regression model can be linearly predicted from the others with a high degree of accuracy, this feature can be dropped from the dataset.
 
-Another solution is to use decision trees or boosted trees algorithms, as they are immune to multicollinearity, since the tree will choose only one of the perfectly correlated features upon splitting.
+Another solution is to use decision trees or boosted trees algorithms, as they are immune to multicollinearity, since the tree will choose only one of the perfectly correlated features upon splitting. I chose to implement both models and tested their accuracy. 
 
-**Table 5**: Final dataframe for model building
+Futhermore, the dimensions can be engineered into a volume by multiplying them to create a new feature. This greatly simplifies the model, by reducing 3 features into 1.
+
+**Table 5**: Dataframe with x, y and z reduced to volume
+
+|    |   price |   cut |   color |   clarity |   table |   volume |
+|---:|--------:|------:|--------:|----------:|--------:|---------:|
+|  0 |     326 |     5 |       6 |         2 |      55 |  38.202  |
+|  1 |     326 |     4 |       6 |         3 |      61 |  34.5059 |
+|  3 |     334 |     4 |       2 |         4 |      58 |  46.7246 |
+|  4 |     335 |     2 |       1 |         2 |      58 |  51.9172 |
+|  5 |     336 |     3 |       1 |         6 |      57 |  38.694  |
+
+ ![](images/studentized_residuals_nolog.png)
+ ![](images/log_resid.png)
+
+
+**Table 6**: Final dataframe for model building
 
 |    |   log_price |   color |   cut |   clarity |   log_volume |   table |
 |---:|------------:|--------:|------:|----------:|-------------:|--------:|
@@ -114,9 +130,23 @@ Another solution is to use decision trees or boosted trees algorithms, as they a
 
 ## Model Building <a name="model"></a>
 
-### Linear Regression without Transformations  <a name="notransform"></a>
+### Linear Regression <a name="lm"></a>
 
-### Linear Regression with Logorithmic Transformation <a name="transform"></a>
+        explained variance score =  0.98
+        mean absolute error =  277.11
+        root mean squared error =  509.31
+        R squared =  0.98
+
+
+
+        explained variance score =  0.95
+        mean absolute error =  417.66
+        root mean squared error =  779.50
+        R squared =  0.95
+    
+
+
+### Random Forest <a name="rf"></a>
 
 ## Future Work <a name="future_work"></a>
 
