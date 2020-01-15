@@ -1,4 +1,3 @@
-# diamond_dataset
 # Application of random forest regression and comparison to performance of multiple linear regression in modeling the prices of diamonds
 ## Carly Wolfbrandt
 
