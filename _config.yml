@@ -1,5 +1,5 @@
 theme: jekyll-theme-minimal
-title: Modeling the Price of Diamonds
+title: <a href="https://github.com/cwolfbrandt/diamond_dataset">Modeling the Price of Diamonds</a> # your name (or website title) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
   Application of random forest regression and comparison to multiple linear regression
   <br>
