@@ -1,0 +1,10 @@
+theme: jekyll-theme-minimal
+title: Modeling the Price of Diamonds
+description: > # your text below (remove <br> elements if you don't need line breaks)
+  Application of random forest regression and comparison to multiple linear regression
+  <br>
+  <br>
+  <a href="https://cwolfbrandt.github.io">Return to Portfolio</a>
+  <br>
+theme: jekyll-theme-minimal
+
