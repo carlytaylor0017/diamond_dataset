@@ -1,6 +1,3 @@
-# Application of random forest regression and comparison to performance of multiple linear regression in modeling the prices of diamonds
-## Carly Wolfbrandt
-
 ### Table of Contents
 1. [Objective](#objective)
 2. [Exploratory Data Analysis](#eda)
