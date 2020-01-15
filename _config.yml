@@ -1,10 +1,9 @@
 theme: jekyll-theme-minimal
 title: <a href="https://github.com/cwolfbrandt/diamond_dataset">Modeling the Price of Diamonds</a> # your name (or website title) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
-  Application of random forest regression and comparison to multiple linear regression
+  Application of random forest regression and comparison to multivariate linear regression
   <br>
   <br>
   <a href="https://cwolfbrandt.github.io">Return to Portfolio</a>
   <br>
 theme: jekyll-theme-minimal
-
