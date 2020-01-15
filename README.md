@@ -4,7 +4,7 @@
     1. [Diamond Dataset](#dataset) 
     2. [Data Cleaning](#cleaning)
     3. [Feature Engineering](#engineering)
-3. [Modelling](#model)
+3. [Modeling](#model)
     1. [Model Pipeline](#pipeline)
     2. [Model Scoring](#scoring)
     3. [Random Forest](#rf)
